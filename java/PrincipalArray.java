@@ -48,11 +48,5 @@ public class PrincipalArray {
         objAlmacenarNumeros.llenarArreglo2(numeros, scanner);
         objAlmacenarNumeros.ParImpar(numeros);
 
-        int[][] Alumnos = new int[4][5];
-        for (int fila = 0; fila < 4; fila++) {
-            for (int col = 0; col < 5; col++) {
-                Alumnos[fila][col] = col;
-            }
-        }
     }
 }
