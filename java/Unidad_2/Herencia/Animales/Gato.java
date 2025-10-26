@@ -1,7 +1,7 @@
-package Herencia.Animales;
+package Unidad_2.Herencia.Animales;
 
 public class Gato extends Animal {
-    private boolean esDomestico;
+    private final boolean esDomestico;
 
     public Gato(String nombre, int edad, boolean domestico) {
         super(nombre, edad);

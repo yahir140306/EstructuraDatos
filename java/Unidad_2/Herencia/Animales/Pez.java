@@ -1,6 +1,6 @@
-package Herencia.Animales;
+package Unidad_2.Herencia.Animales;
 
-public class Pez extends Animal{
+public class Pez extends Animal {
     private final String tipoAgua;
 
     public Pez(String nombre, int edad, String tipoAgua) {

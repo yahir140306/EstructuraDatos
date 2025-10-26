@@ -1,4 +1,4 @@
-package Herencia.Animales;
+package Unidad_2.Herencia.Animales;
 
 public abstract class Animal {
     protected String nombre;
