@@ -1,4 +1,4 @@
-package Unidad_2.Herencia.Vehiculo;
+package Herencia.Vehiculo;
 
 public class Velero extends VehiculoAcuatico {
     public Velero(String nombre) {

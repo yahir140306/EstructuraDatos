@@ -1,7 +1,5 @@
 package Herencia.Personas;
 
-import Unidad_2.Herencia.Personas.Persona;
-
 public class Docente extends Persona {
 
     @Override

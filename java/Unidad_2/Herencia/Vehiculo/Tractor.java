@@ -1,6 +1,6 @@
-package Unidad_2.Herencia.Vehiculo;
+package Herencia.Vehiculo;
 
-public class Tractor extends VehiculoTerrestre{
+public class Tractor extends VehiculoTerrestre {
     public Tractor(String nombre) {
         super(nombre, 40, "Diesel", 4);
     }

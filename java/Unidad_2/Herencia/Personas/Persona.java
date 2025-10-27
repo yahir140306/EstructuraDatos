@@ -1,4 +1,4 @@
-package Unidad_2.Herencia.Personas;
+package Herencia.Personas;
 
 public abstract class Persona {
 

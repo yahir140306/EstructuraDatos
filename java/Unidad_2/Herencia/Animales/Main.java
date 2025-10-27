@@ -1,4 +1,4 @@
-package Unidad_2.Herencia.Animales;
+package Herencia.Animales;
 
 public class Main {
     public static void main(String[] args) {

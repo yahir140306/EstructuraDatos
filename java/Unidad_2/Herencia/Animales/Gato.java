@@ -1,4 +1,4 @@
-package Unidad_2.Herencia.Animales;
+package Herencia.Animales;
 
 public class Gato extends Animal {
     private final boolean esDomestico;

@@ -1,4 +1,4 @@
-package Unidad_2.Herencia.Vehiculo;
+package Herencia.Vehiculo;
 
 public class Main {
     public static void main(String[] args) {

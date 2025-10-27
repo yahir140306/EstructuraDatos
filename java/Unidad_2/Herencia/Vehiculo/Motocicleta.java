@@ -1,6 +1,6 @@
-package Unidad_2.Herencia.Vehiculo;
+package Herencia.Vehiculo;
 
-public class Motocicleta extends VehiculoTerrestre{
+public class Motocicleta extends VehiculoTerrestre {
     public Motocicleta(String nombre, int velocidadMaxima) {
         super(nombre, velocidadMaxima, "Gasolina", 2);
     }

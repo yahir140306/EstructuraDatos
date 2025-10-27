@@ -1,10 +1,10 @@
-package Unidad_2.Herencia.Animales;
+package Herencia.Animales;
 
 public class Pez extends Animal {
     private final String tipoAgua;
 
     public Pez(String nombre, int edad, String tipoAgua) {
-        super (nombre, edad);
+        super(nombre, edad);
         this.tipoAgua = tipoAgua;
     }
 
@@ -14,7 +14,7 @@ public class Pez extends Animal {
     }
 
     @Override
-    public void hacerSonido(){
+    public void hacerSonido() {
         System.out.println("Pez hacerSonido de " + tipoAgua);
     }
 }

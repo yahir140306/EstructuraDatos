@@ -1,4 +1,4 @@
-package Unidad_2.Herencia.Vehiculo;
+package Herencia.Vehiculo;
 
 public class VehiculoAereo extends Vehiculo {
     protected int alturaMaxima;

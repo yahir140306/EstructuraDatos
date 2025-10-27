@@ -1,6 +1,6 @@
-package Unidad_2.Herencia.Vehiculo;
+package Herencia.Vehiculo;
 
-public class Helicoptero  extends VehiculoAereo{
+public class Helicoptero extends VehiculoAereo {
     public Helicoptero(String nombre, int velocidadMaxima) {
         super(nombre, velocidadMaxima, "Turbosina", 4500);
     }

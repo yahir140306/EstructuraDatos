@@ -1,6 +1,4 @@
-package Unidad_2.Herencia.Animales;
-
-import Unidad_2.Herencia.Animales.Animal;
+package Herencia.Animales;
 
 public class Perro extends Animal {
     private final String raza;

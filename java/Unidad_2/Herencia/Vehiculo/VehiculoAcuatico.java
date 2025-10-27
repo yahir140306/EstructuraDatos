@@ -1,4 +1,4 @@
-package Unidad_2.Herencia.Vehiculo;
+package Herencia.Vehiculo;
 
 public class VehiculoAcuatico extends Vehiculo {
     protected boolean tieneCasco;
