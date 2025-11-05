@@ -40,7 +40,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return String.format("%s (x%d) - Precio Unitario: $%.2f - Subtotal: $%.2f ", nombre, cantidad, precioUnitario,
+        return String.format("\n %s %d Cantidad - Precio Unitario: $%.2f - Subtotal: $%.2f ", nombre, cantidad, precioUnitario,
                 calcularSubtotal());
     }
 }

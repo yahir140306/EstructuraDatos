@@ -12,7 +12,7 @@ public class Pedido {
     public void agregarProducto(Producto producto) {
         if (producto != null) {
             listaProductos.add(producto);
-            System.out.println("\nProducto " + producto.getNombre() + "agregado");
+            System.out.println("\nProducto " + producto.getNombre() + " agregado");
         }
     }
 
@@ -36,6 +36,6 @@ public class Pedido {
             System.out.println(" " + (i + 1) + " " + listaProductos.get(i));
         }
 
-        System.out.println("\nTotal a pagar " + calcularTotal());
+        System.out.printf("\nTotal a pagar: $%.2f%n", calcularTotal());
     }
 }
