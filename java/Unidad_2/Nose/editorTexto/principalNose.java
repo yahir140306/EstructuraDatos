@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class principal {
+public class principalNose {
     public static void main(String[] args) {
 
         String opcion = "";
