@@ -7,9 +7,12 @@ public class Burbuja_Calificaciones {
 
     public static void main(String[] args) {
         // datos de ejemplo
-        listaEstudiantes.add(new Estudiante("ABC001", "Juanchis", 9));
+        listaEstudiantes.add(new Estudiante("ABC001", "Juanchis", 7));
         listaEstudiantes.add(new Estudiante("ABC002", "Paco", 8.5));
-        listaEstudiantes.add(new Estudiante("ABC003", "Panchito", 7));
+        listaEstudiantes.add(new Estudiante("ABC003", "Panchito", 9));
+        listaEstudiantes.add(new Estudiante("ABC004", "Panchita", 5));
+        listaEstudiantes.add(new Estudiante("ABC004", "Jose", 6));
+
         try (Scanner scanner = new Scanner(System.in)) {
             String opcion;
 
@@ -22,6 +25,7 @@ public class Burbuja_Calificaciones {
                 System.out.println("5.- Mostrar promedio general");
                 System.out.println("6.- Mostrar todos los estudiantes");
                 System.out.println("7.- Ordenar calificaciones (burbuja)");
+                System.out.println("8.- Ordenar calificaciones (quicksort)");
                 System.out.println("0.- Salir");
                 System.out.println("\nSeleccione una opcion: ");
 
@@ -127,6 +131,11 @@ public class Burbuja_Calificaciones {
                         ordenarCalificacionesMenu(scanner);
                         break;
 
+                    case "8":
+                        System.out.println("\nOrdenando calificaciones con quicksort...");
+                        quicksortOrdenarPorCalificacion(new ArrayList<>(listaEstudiantes), true);
+                        break;
+
                     case "0":
                         break;
 
@@ -147,46 +156,102 @@ public class Burbuja_Calificaciones {
         return null;
     }
 
-    private static void ordenarCalificacionesMenu(Scanner scanner) {
-        if (listaEstudiantes.isEmpty()) {
-            System.out.println("\nNo hay estudiantes que ordenar.");
-            return;
+    private static void burbujaOrdenarPorCalificacion(List<Estudiante> lista, boolean descendente) {
+        int tamano = lista.size();
+        int vueltas = 0;
+        for (int pasada = 0; pasada < tamano - 1; pasada++) {
+            boolean intercambio = false;
+            for (int i = 0; i < tamano - 1 - pasada; i++) {
+                double calificacionA = lista.get(i).getCalificacion();
+                double calificacionB = lista.get(i + 1).getCalificacion();
+                boolean debeIntercambiar = descendente ? (calificacionA < calificacionB)
+                        : (calificacionA > calificacionB);
+                if (debeIntercambiar) {
+                    Estudiante temporal = lista.get(i);
+                    lista.set(i, lista.get(i + 1));
+                    lista.set(i + 1, temporal);
+                    intercambio = true;
+                }
+            }
+            vueltas++;
+            if (!intercambio)
+                break;
         }
+        System.out.println("Burbuja completado. Vueltas totales: " + vueltas);
+    }
 
-        System.out.println("\nSeleccione el orden:");
-        System.out.println("1.- Mayor a menor");
-        System.out.println("2.- Menor a mayor");
-        String opt = scanner.next();
+    private static void quicksortOrdenarPorCalificacion(List<Estudiante> lista, boolean descendente) {
+        int tamano = lista.size();
+        Estudiante[] arreglo = lista.toArray(new Estudiante[0]);
+        long[] contador = new long[1];
+        quicksortRecursivo(arreglo, 0, tamano - 1, descendente, contador);
+        for (int i = 0; i < tamano; i++) {
+            lista.set(i, arreglo[i]);
+        }
+        System.out.println("Quicksort completado. Vueltas totales: " + contador[0]);
+    }
 
-        boolean descending = "1".equals(opt);
-
-        // Hacemos una copia para no mutar la lista original
-        List<Estudiante> copia = new ArrayList<>(listaEstudiantes);
-        burbujaOrdenarPorCalificacion(copia, descending);
-
-        System.out.println("\nLista ordenada: ");
-        for (Estudiante e : copia) {
-            System.out.println(e);
+    private static void quicksortRecursivo(Estudiante[] arreglo, int bajo, int alto, boolean descendente,
+            long[] contador) {
+        if (bajo < alto) {
+            contador[0]++;
+            int p = particion(arreglo, bajo, alto, descendente);
+            quicksortRecursivo(arreglo, bajo, p - 1, descendente, contador);
+            quicksortRecursivo(arreglo, p + 1, alto, descendente, contador);
         }
     }
 
-    private static void burbujaOrdenarPorCalificacion(List<Estudiante> lista, boolean descending) {
-        int n = lista.size();
-        for (int pass = 0; pass < n - 1; pass++) {
-            boolean swapped = false;
-            for (int i = 0; i < n - 1 - pass; i++) {
-                double a = lista.get(i).getCalificacion();
-                double b = lista.get(i + 1).getCalificacion();
-                boolean debeIntercambiar = descending ? (a < b) : (a > b);
-                if (debeIntercambiar) {
-                    Estudiante tmp = lista.get(i);
-                    lista.set(i, lista.get(i + 1));
-                    lista.set(i + 1, tmp);
-                    swapped = true;
-                }
+    private static int particion(Estudiante[] arreglo, int bajo, int alto, boolean descendente) {
+        double pivote = arreglo[alto].getCalificacion();
+        int i = bajo - 1;
+        for (int j = bajo; j <= alto - 1; j++) {
+            boolean condicion = descendente ? (arreglo[j].getCalificacion() > pivote)
+                    : (arreglo[j].getCalificacion() < pivote);
+            if (condicion) {
+                i++;
+                Estudiante temporal = arreglo[i];
+                arreglo[i] = arreglo[j];
+                arreglo[j] = temporal;
             }
-            if (!swapped)
-                break;
+        }
+        Estudiante temporal = arreglo[i + 1];
+        arreglo[i + 1] = arreglo[alto];
+        arreglo[alto] = temporal;
+        return i + 1;
+    }
+
+    private static void ordenarCalificacionesMenu(Scanner entrada) {
+        if (listaEstudiantes.isEmpty()) {
+            System.out.println("No hay estudiantes que ordenar.");
+            return;
+        }
+
+        System.out.println("Seleccione el metodo de ordenamiento:");
+        System.out.println("1.- Burbuja");
+        System.out.println("2.- Quicksort");
+        String metodo = entrada.next();
+
+        System.out.println("Seleccione el orden:");
+        System.out.println("1.- Mayor a menor");
+        System.out.println("2.- Menor a mayor");
+        String opcion = entrada.next();
+
+        boolean descendente = "1".equals(opcion);
+
+        List<Estudiante> copia = new ArrayList<>(listaEstudiantes);
+
+        if ("1".equals(metodo)) {
+            burbujaOrdenarPorCalificacion(copia, descendente);
+        } else if ("2".equals(metodo)) {
+            quicksortOrdenarPorCalificacion(copia, descendente);
+        } else {
+            System.out.println("Metodo no valido.");
+            return;
+        }
+
+        System.out.println("Lista ordenada: ");
+        for (Estudiante estudiante : copia) {
+            System.out.println(estudiante);
         }
     }
 }
